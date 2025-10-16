@@ -22,6 +22,19 @@ jobs:
     - run: npm install      
     - run: npm run coverage
 
+  mutation:
+    name: Run Mutation Tests
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4.2.2
+    - name: Use Node.js 22
+      uses: actions/setup-node@v4.3.0
+      with:
+        node-version: 22
+        cache: 'npm'
+    - run: npm install
+    - run: npx stryker run
+
   sonarcloud:
     name: Run SonarCloud
     runs-on: ubuntu-latest
